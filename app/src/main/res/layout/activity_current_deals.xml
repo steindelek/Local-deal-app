@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/RecyclerView_deals"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"
+            android:background="@color/cardview_dark_background">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="-10dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/menu_button_drink"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/white_text"
+            android:layout_marginTop="-1dp"
+            android:drawableTop="@drawable/ic_local_drink"
+            android:text="@string/menu_drink" />
+
+        <Button
+            android:id="@+id/menu_button_eat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="-10dp"
+            android:textColor="@color/white_text"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:drawableTop="@drawable/ic_action_restaurant"
+            android:text="@string/menu_eat" />
+
+        <Button
+            android:id="@+id/menu_button_locals"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="-1dp"
+            android:textColor="@color/white_text"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:drawableTop="@drawable/ic_store_mall_directory"
+            android:text="@string/menu_locals" />
+
+        <Button
+            android:id="@+id/menu_button_days"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="-10dp"
+            android:textColor="@color/white_text"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:drawableTop="@drawable/ic_action_heart"
+            android:text="@string/menu_days" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/loading_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:background="#da101010">
+
+        <ProgressBar
+            android:id="@+id/progresbar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:scrollbarStyle="outsideOverlay" />
+
+        <TextView
+            android:id="@+id/loading_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progresbar"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorAccent"
+            android:layout_centerHorizontal="true"
+            android:text="@string/loading_gps"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LocalDealsApp</string>
+    <string name="menu_drink">drink</string>
+    <string name="menu_eat">eat</string>
+    <string name="menu_locals">places</string>
+    <string name="menu_days">plan</string>
+    <string name="loading_gps">Getting your locations...</string>
+    <string name="loading_data">Getting deals...</string>
+</resources>
