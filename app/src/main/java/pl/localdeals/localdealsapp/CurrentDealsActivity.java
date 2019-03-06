@@ -45,6 +45,8 @@ public class CurrentDealsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
+        loadingInfo.setText(R.string.loading_data);
+
         GpsTracker gpsTracker = new GpsTracker(getApplicationContext());
         location = gpsTracker.getDeviceLocation();
 
@@ -54,6 +56,7 @@ public class CurrentDealsActivity extends AppCompatActivity {
         minutes = calendar.get(Calendar.MINUTE);
 
         myTimer = new MyTimer(day, hour, minutes);
+
 
         DownloadData downloadData = new DownloadData();
         downloadData.execute();
@@ -96,7 +99,6 @@ public class CurrentDealsActivity extends AppCompatActivity {
     private class DownloadData extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {
-            loadingInfo.setText(R.string.loading_data);
             String raw_data;
             raw_data = Utils.get_data(Utils.URL_GET_LOCALS, "code");
             allLocals = Utils.raw_data_to_locals_dict(raw_data, location);

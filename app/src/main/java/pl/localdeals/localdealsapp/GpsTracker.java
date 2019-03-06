@@ -55,6 +55,7 @@ public class GpsTracker extends Service implements LocationListener {
 
         }
         if (location == null){
+            location = locationManager.getLastKnownLocation(locationManager.PASSIVE_PROVIDER);
             location.setLatitude(0);
             location.setLongitude(0);
         }
