@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background">
+
+    <FrameLayout
+        android:id="@+id/fragment_preview"
+        android:layout_width="wrap_content"
+        android:layout_height="220dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"></FrameLayout>
+
+    <EditText
+        android:id="@+id/et_deal_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/fragment_preview"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:inputType="textShortMessage"
+        android:hint="@string/deal_title"
+        android:padding="5dp"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/et_deal_description"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/et_deal_title"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:inputType="textMultiLine"
+        android:hint="@string/deal_description"
+        android:padding="5dp" />
+
+    <EditText
+        android:id="@+id/et_price"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_deal_description"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:inputType="number"
+        android:gravity="center"
+        android:hint="@string/price"
+        android:padding="5dp" />
+
+    <Switch
+        android:id="@+id/switch_pln_pct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/et_price"
+        android:layout_alignBottom="@id/et_price"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:text=" $ <-> % " />
+
+    <Button
+        android:id="@+id/bt_upload_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@id/et_price"
+        android:drawableStart="@drawable/ic_action_camera"
+        android:text="@string/upload_pic"
+        android:drawablePadding="5dp"
+        android:paddingEnd="10dp"
+        />
+
+
+    <ProgressBar
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+    <Button
+        android:id="@+id/btn_upload_deal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp"
+        android:clickable="false"
+        android:text="@string/upload_deal" />
+
+</RelativeLayout>

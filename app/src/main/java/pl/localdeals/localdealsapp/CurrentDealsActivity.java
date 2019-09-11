@@ -1,8 +1,12 @@
 package pl.localdeals.localdealsapp;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.provider.CalendarContract;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -69,6 +73,8 @@ public class CurrentDealsActivity extends AppCompatActivity {
                 selectedDeals = myTimer.pickDealsByType(new ArrayList<>(todaysDeals), 1);
                 recyclerView.setAdapter(new DealAdapter(selectedDeals, allLocals, recyclerView, getApplicationContext()));
                 loadingview.setVisibility(View.INVISIBLE);
+                changeButtonColor(1);
+
             }
         });
 
@@ -79,6 +85,7 @@ public class CurrentDealsActivity extends AppCompatActivity {
                 selectedDeals = myTimer.pickDealsByType(new ArrayList<>(todaysDeals), 2);
                 recyclerView.setAdapter(new DealAdapter(selectedDeals, allLocals, recyclerView, getApplicationContext()));
                 loadingview.setVisibility(View.INVISIBLE);
+                changeButtonColor(2);
             }
         });
 
@@ -91,6 +98,7 @@ public class CurrentDealsActivity extends AppCompatActivity {
                 location = gpsTracker.getDeviceLocation();
                 DownloadData downloadData = new DownloadData();
                 downloadData.execute();
+                changeButtonColor(0);
             }
         });
     }
@@ -116,7 +124,7 @@ public class CurrentDealsActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Error :(", Toast.LENGTH_LONG).show();
                 }
             }else{
-                //todaysDeals = myTimer.pickDealsByDay(new ArrayList<>(allDeals), myTimer.today);
+                todaysDeals = myTimer.pickDealsByDay(new ArrayList<>(allDeals), myTimer.today);
                 todaysDeals = new ArrayList<>(allDeals);
                 recyclerView.setAdapter(new DealAdapter(todaysDeals, allLocals, recyclerView, getApplicationContext()));
                 loadingview.setVisibility(View.INVISIBLE);
@@ -132,6 +140,16 @@ public class CurrentDealsActivity extends AppCompatActivity {
     private boolean isLocationEnabled() {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
                 locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+    }
+
+    private void changeButtonColor(int flag){
+        if (flag == 1){
+            buttonEat.setTextColor(getResources().getColor(R.color.white_text));
+            buttonDrink.setTextColor(getResources().getColor(R.color.colorAccent));
+        }else if(flag == 2){
+            buttonDrink.setTextColor(getResources().getColor(R.color.white_text));
+            buttonEat.setTextColor(getResources().getColor(R.color.colorAccent));
+        }
     }
 
 

@@ -140,6 +140,7 @@ public class Utils {
                         singleJsonObject.getDouble("LATERAL"));
                 temp_local.calculate_distance(device_location);
                 locals.put(singleJsonObject.getInt("ID"), temp_local);
+
                 singleJsonObject = null;
             }
         } catch (JSONException e) {

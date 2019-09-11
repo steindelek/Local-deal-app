@@ -6,4 +6,11 @@
     <string name="menu_days">plan</string>
     <string name="loading_gps">Getting your locations...</string>
     <string name="loading_data">Getting deals...</string>
+    <string name="add">add</string>
+    <string name="upload_deal">Upload</string>
+    <string name="upload_pic">picture</string>
+
+    <string name="deal_title">Deal Title</string>
+    <string name="deal_description">Deal description</string>
+    <string name="price">$$$</string>
 </resources>
