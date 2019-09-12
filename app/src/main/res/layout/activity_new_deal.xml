@@ -60,7 +60,7 @@
         android:layout_alignBottom="@id/et_price"
         android:padding="5dp"
         android:layout_margin="5dp"
-        android:text=" $ <-> % " />
+        android:text=" PLN " />
 
     <Button
         android:id="@+id/bt_upload_pic"

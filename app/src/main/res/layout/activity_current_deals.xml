@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
 
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
@@ -65,15 +66,15 @@
             android:text="@string/menu_locals" />
 
         <Button
-            android:id="@+id/menu_button_days"
+            android:id="@+id/menu_button_add"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginTop="-8dp"
-            android:textColor="@color/white_text"
-            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_weight="1"
             android:drawableTop="@drawable/ic_action_add"
-            android:text="@string/add" />
+            android:text="@string/add"
+            android:textColor="@color/white_text" />
 
     </LinearLayout>
 
@@ -104,5 +105,15 @@
             android:text="@string/loading_gps"/>
 
     </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/current_view_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="53dp"
+        android:visibility="invisible"
+        android:background="@color/colorPrimaryDark">
+
+    </FrameLayout>
 
 </RelativeLayout>

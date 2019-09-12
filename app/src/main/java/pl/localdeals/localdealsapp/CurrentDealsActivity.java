@@ -7,6 +7,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.provider.CalendarContract;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,12 +16,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
+import java.util.zip.Inflater;
 
 
 public class CurrentDealsActivity extends AppCompatActivity {
@@ -34,7 +37,8 @@ public class CurrentDealsActivity extends AppCompatActivity {
     LocationManager locationManager;
     SwipeRefreshLayout swipeRefreshLayout;
     MyTimer myTimer;
-    Button buttonDrink, buttonEat, buttonPlaces, buttonFavourites;
+    Button buttonDrink, buttonEat, buttonPlaces, buttonAdd;
+    FrameLayout fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +49,11 @@ public class CurrentDealsActivity extends AppCompatActivity {
         loadingInfo = findViewById(R.id.loading_info);
         buttonDrink = findViewById(R.id.menu_button_drink);
         buttonEat = findViewById(R.id.menu_button_eat);
+        buttonAdd = findViewById(R.id.menu_button_add);
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        fragment = findViewById(R.id.current_view_fragment);
 
         loadingInfo.setText(R.string.loading_data);
 
@@ -69,10 +75,12 @@ public class CurrentDealsActivity extends AppCompatActivity {
         buttonDrink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                fragment.setVisibility(View.INVISIBLE);
                 loadingview.setVisibility(View.VISIBLE);
                 selectedDeals = myTimer.pickDealsByType(new ArrayList<>(todaysDeals), 1);
                 recyclerView.setAdapter(new DealAdapter(selectedDeals, allLocals, recyclerView, getApplicationContext()));
                 loadingview.setVisibility(View.INVISIBLE);
+                recyclerView.setVisibility(View.VISIBLE);
                 changeButtonColor(1);
 
             }
@@ -81,11 +89,21 @@ public class CurrentDealsActivity extends AppCompatActivity {
         buttonEat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                fragment.setVisibility(View.INVISIBLE);
                 loadingview.setVisibility(View.VISIBLE);
                 selectedDeals = myTimer.pickDealsByType(new ArrayList<>(todaysDeals), 2);
                 recyclerView.setAdapter(new DealAdapter(selectedDeals, allLocals, recyclerView, getApplicationContext()));
                 loadingview.setVisibility(View.INVISIBLE);
+                recyclerView.setVisibility(View.VISIBLE);
                 changeButtonColor(2);
+            }
+        });
+
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeButtonColor(3);
+
             }
         });
 
@@ -144,12 +162,38 @@ public class CurrentDealsActivity extends AppCompatActivity {
 
     private void changeButtonColor(int flag){
         if (flag == 1){
-            buttonEat.setTextColor(getResources().getColor(R.color.white_text));
+            endAddingDeal();
+            setButtonsToUnclicked();
             buttonDrink.setTextColor(getResources().getColor(R.color.colorAccent));
         }else if(flag == 2){
-            buttonDrink.setTextColor(getResources().getColor(R.color.white_text));
+            endAddingDeal();
+            setButtonsToUnclicked();
             buttonEat.setTextColor(getResources().getColor(R.color.colorAccent));
+        }else if (flag == 3){
+            setButtonsToUnclicked();
+            buttonAdd.setTextColor(getResources().getColor(R.color.colorAccent));
+            setupAddingDeal();
         }
+    }
+
+    private void setButtonsToUnclicked(){
+        buttonEat.setTextColor(getResources().getColor(R.color.white_text));
+        buttonDrink.setTextColor(getResources().getColor(R.color.white_text));
+        buttonAdd.setTextColor(getResources().getColor(R.color.white_text));
+    }
+
+    private void setupAddingDeal(){
+        recyclerView.setVisibility(View.INVISIBLE);
+        fragment.setVisibility(View.VISIBLE);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.current_view_fragment, new AddDealFragment());
+        fragmentTransaction.commit();
+
+    }
+
+    private void endAddingDeal(){
+        recyclerView.setVisibility(View.VISIBLE);
+        fragment.setVisibility(View.INVISIBLE);
     }
 
 
